@@ -1,4 +1,5 @@
 import pygame
+import time
 
 pygame.init()  # aplicando o setup
 screen = pygame.display.set_mode((1280, 720))
@@ -27,7 +28,7 @@ while running:
     # Verifica se uma tecla foi apertada
     def movimentacao():
         keys = pygame.key.get_pressed()
-        velocidade = 300
+        velocidade = 150
 
         if keys[pygame.K_w]:
             player_pos.y -= velocidade * dt
@@ -44,7 +45,7 @@ while running:
     # Desenha as bolas de disparo
     def disparo():
         keys = pygame.key.get_pressed()
-        velocidade_tiro = 500
+        velocidade_tiro = 300
 
         if keys[pygame.K_UP]:
             tiros.append({"pos": pygame.Vector2(player_pos.x, player_pos.y), "vel": pygame.Vector2(0, -velocidade_tiro), "duration": 0})
@@ -58,12 +59,13 @@ while running:
         # Combinações diagonais
         if keys[pygame.K_UP] and keys[pygame.K_LEFT]:
             tiros.append({"pos": pygame.Vector2(player_pos.x, player_pos.y), "vel": pygame.Vector2(-velocidade_tiro, -velocidade_tiro), "duration": 0})
-        if keys[pygame.K_UP] and keys[pygame.K_RIGHT]:
+        elif keys[pygame.K_UP] and keys[pygame.K_RIGHT]:
             tiros.append({"pos": pygame.Vector2(player_pos.x, player_pos.y), "vel": pygame.Vector2(velocidade_tiro, -velocidade_tiro), "duration": 0})
-        if keys[pygame.K_DOWN] and keys[pygame.K_LEFT]:
+        elif keys[pygame.K_DOWN] and keys[pygame.K_LEFT]:
             tiros.append({"pos": pygame.Vector2(player_pos.x, player_pos.y), "vel": pygame.Vector2(-velocidade_tiro, velocidade_tiro), "duration": 0})
-        if keys[pygame.K_DOWN] and keys[pygame.K_RIGHT]:
+        elif keys[pygame.K_DOWN] and keys[pygame.K_RIGHT]:
             tiros.append({"pos": pygame.Vector2(player_pos.x, player_pos.y), "vel": pygame.Vector2(velocidade_tiro, velocidade_tiro), "duration": 0})
+        
 
     # Atualiza os disparos
     disparo()
