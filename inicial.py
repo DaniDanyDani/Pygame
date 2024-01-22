@@ -22,24 +22,27 @@ while running:
     pygame.draw.circle(screen, "red", player_pos, 10)
 
     # Verifica se uma tecla foi apertada
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        # Tecla w
-        player_pos.y -= 300 * dt
-        # Atualiza a posição em y
-    if keys[pygame.K_s]:
-        # Tecla s
-        player_pos.y += 300 * dt
-        # Atualiza a posição em y
-    if keys[pygame.K_a]:
-        # tecla a
-        player_pos.x -= 300 * dt
-        # Atualiza a posição em x
-    if keys[pygame.K_d]:
-        # tecla d
-        player_pos.x += 300 * dt
-        # Atualiza a posição em x
+    def movimentacao():
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w]:
+            # Tecla w
+            player_pos.y -= 300 * dt
+            # Atualiza a posição em y
+        if keys[pygame.K_s]:
+            # Tecla s
+            player_pos.y += 300 * dt
+            # Atualiza a posição em y
+        if keys[pygame.K_a]:
+            # tecla a
+            player_pos.x -= 300 * dt
+            # Atualiza a posição em x
+        if keys[pygame.K_d]:
+            # tecla d
+            player_pos.x += 300 * dt
+            # Atualiza a posição em x
+        return player_pos
 
+    movimentacao()
     # flip() não entendi direito mas acredito que atualiza a página
     pygame.display.flip()
 
